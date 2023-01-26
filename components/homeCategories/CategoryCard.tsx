@@ -23,8 +23,8 @@ export default function CategoryCard() {
     <Swiper
       slidesPerView={1}
       spaceBetween={30}
-      freeMode={true}
       pagination={{
+        type: "progressbar",
         clickable: true,
       }}
       className={styles.cardSwiper}
@@ -44,30 +44,28 @@ export default function CategoryCard() {
         },
       }}
     >
-      {homeProduct.map((item, i) => {
-        return (
-          <SwiperSlide key={i}>
-            <Card>
-              <CardActionArea>
-                <CardMedia component="img" height="200" image={item.image} alt={item.title} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, laboriosam.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  ดูสินค้า
-                </Button>
-              </CardActions>
-            </Card>
-          </SwiperSlide>
-        );
-      })}
+      {homeProduct
+        ? homeProduct.map((item, i) => {
+            return (
+              <SwiperSlide key={i}>
+                <Card sx={{ maxHeight: "350px" }}>
+                  <CardActionArea>
+                    <CardMedia component="img" height="200" image={item.image} alt={item.title} />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore,
+                        laboriosam.
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </SwiperSlide>
+            );
+          })
+        : null}
     </Swiper>
   );
 }

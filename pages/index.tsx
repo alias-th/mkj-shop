@@ -1,6 +1,9 @@
 import HomeCategories from "@/components/homeCategories";
 import HomeFeatured from "@/components/homeFeatured";
+import HomeFooter from "@/components/homeFooter";
 import Header from "@/components/homeHeader";
+import HomePerformance from "@/components/homePerformance";
+
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
 
@@ -13,7 +16,9 @@ const Home: NextPage<Props> = () => {
       <Container maxWidth="xl" sx={{ minWidth: "250px" }}>
         <HomeFeatured />
         <HomeCategories />
+        <HomePerformance />
       </Container>
+      <HomeFooter />
     </>
   );
 };

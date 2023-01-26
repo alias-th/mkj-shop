@@ -6,14 +6,13 @@ interface Props {}
 
 const HomeCategories: FC<Props> = (props): JSX.Element => {
   return (
-    <Paper elevation={0} sx={{ backgroundColor: "#B9FFFC" }}>
+    <Paper elevation={0} sx={{ backgroundColor: "#ffffff" }}>
       <Grid
         container
         marginTop="50px"
-        width="100%"
         marginLeft={0}
         padding="16px"
-        sx={{ gap: "20px" }}
+        sx={{ gap: "20px", minHeight: "550px" }}
       >
         <Grid
           item
@@ -36,11 +35,10 @@ const HomeCategories: FC<Props> = (props): JSX.Element => {
             </Typography>
           </Box>
         </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <CategoryCard />
-          </Grid>
-        </Grid>
+
+        <Box sx={{ maxWidth: "100%", height: "100%" }}>
+          <CategoryCard />
+        </Box>
       </Grid>
     </Paper>
   );
