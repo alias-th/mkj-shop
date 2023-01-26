@@ -22,6 +22,11 @@ declare module "@mui/material/styles" {
     tertiary?: string;
     quaternary?: string;
   }
+
+  interface BreakpointOverrides {
+    lgs: true;
+    mds: true;
+  }
 }
 
 export const sarabun = Sarabun({
@@ -56,6 +61,17 @@ const theme = createTheme({
   typography: {
     fontFamily: sarabun.style.fontFamily,
     htmlFontSize: 10,
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      mds: 700,
+      md: 900,
+      lgs: 1100,
+      lg: 1200,
+      xl: 1536,
+    },
   },
 });
 

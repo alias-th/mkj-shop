@@ -1,0 +1,13 @@
+.homeSwiper {
+  max-width: 500px;
+  max-height: 400px;
+  align-self: center;
+  justify-self: center;
+  border-radius: 5px;
+  overflow: hidden !important;
+  box-shadow: rgba(0, 0, 0, 0.645) -10px 10px 30px 1px;
+}
+
+.decreaseHeight {
+  height: 300px;
+}

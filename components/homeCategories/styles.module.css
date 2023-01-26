@@ -1,0 +1,5 @@
+.cardSwiper img {
+  height: 200px !important;
+
+  overflow: clip;
+}

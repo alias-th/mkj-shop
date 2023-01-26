@@ -49,17 +49,22 @@ const Header: FC<Props> = (props): JSX.Element => {
   const downSm = useMediaQuery(theme.breakpoints.down("sm"));
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
+  // สามารถปรับปรุงได้
+  // แบ่ง component ได้อีก
+
   return (
-    <AppBar position="static" color="secondary" sx={{ height: "72px" }}>
+    <AppBar position="static" color="secondary" sx={{ height: "72px", minWidth: "250px" }}>
       <Container maxWidth="xl" sx={{ height: "100%" }}>
         <Toolbar
           disableGutters
           sx={{ height: "100%", gap: "2rem", justifyContent: "space-between" }}
         >
-          {/* LOGO -> Display When : Media query down md */}
+          {/* LOGO -> Display When : Media query up md */}
+          {/* แสดงตอน upMd */}
           {upMd && <Image src="/logo.png" alt="logo" width={100} height={70} priority />}
 
           {/* HAMBURGER */}
+          {/* แสดงตอน xs */}
           <Box sx={{ flexGrow: downMd ? 0 : 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -99,6 +104,7 @@ const Header: FC<Props> = (props): JSX.Element => {
           </Box>
 
           {/* LOGO -> Display When : Media query down md */}
+          {/* โลโก้ตรงกลาง */}
           {downMd && !downSm && (
             <Box sx={{ flex: 1, justifyContent: "center", alignItems: "center", display: "flex" }}>
               <Image src="/logo.png" alt="logo" width={100} height={70} />
@@ -106,6 +112,7 @@ const Header: FC<Props> = (props): JSX.Element => {
           )}
 
           {/* MENU BUTTON */}
+          {/* เมนูแต่ละ page */}
           <Box sx={{ flex: 0.5, gap: "10px", display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
