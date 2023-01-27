@@ -6,12 +6,14 @@ import HomePerformance from "@/components/homePerformance";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
+import HomeProduct from "@/components/homeProduct";
+import ProductSwiper from "@/components/homeProduct/ProductCard";
 
 interface Props {}
 
 const Home: NextPage<Props> = () => {
   const matches320 = useMediaQuery("(max-width:320px)");
-  console.log(matches320);
+
   return (
     <>
       <Header />
@@ -27,6 +29,7 @@ const Home: NextPage<Props> = () => {
         <HomeFeatured />
         <HomeCategories />
         <HomePerformance />
+        <HomeProduct />
       </Container>
       <HomeFooter />
     </>
