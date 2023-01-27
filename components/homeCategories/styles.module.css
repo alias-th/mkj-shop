@@ -1,7 +1,6 @@
 .cardSwiper img {
-  height: 200px !important;
+  height: 200px;
   max-width: 300px;
-  overflow: clip;
 }
 
 .cardSwiper {

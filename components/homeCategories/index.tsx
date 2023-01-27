@@ -11,8 +11,8 @@ const HomeCategories: FC<Props> = (props): JSX.Element => {
         container
         marginTop="50px"
         marginLeft={0}
-        padding="16px"
-        sx={{ gap: "20px", minHeight: "550px" }}
+        padding={{ xs: "20px", md: "0px" }}
+        sx={{ gap: "20px" }}
       >
         <Grid
           item

@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
 import styles from "./styles.module.css";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,15 +20,16 @@ import { FreeMode, Pagination } from "swiper";
 import { homeProduct } from "@/data/home";
 
 export default function CategoryCard() {
+  const matches500 = useMediaQuery("(max-width:500px)");
   return (
     <Swiper
-      slidesPerView={1}
+      slidesPerView={2}
       spaceBetween={30}
       pagination={{
         type: "progressbar",
         clickable: true,
       }}
-      className={styles.cardSwiper}
+      className={`${styles.cardSwiper}`}
       modules={[FreeMode, Pagination]}
       breakpoints={{
         450: {
@@ -50,12 +52,28 @@ export default function CategoryCard() {
               <SwiperSlide key={i}>
                 <Card sx={{ maxHeight: "350px" }}>
                   <CardActionArea>
-                    <CardMedia component="img" height="200" image={item.image} alt={item.title} />
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        height: `${matches500 && "100px !important"}`,
+                      }}
+                      image={item.image}
+                      alt={item.title}
+                    />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        sx={{ fontSize: `${matches500 && "1.6rem"}` }}
+                      >
                         {item.title}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ fontSize: `${matches500 && "1rem"}` }}
+                      >
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore,
                         laboriosam.
                       </Typography>

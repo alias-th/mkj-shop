@@ -9,8 +9,7 @@ interface Props {}
 const HomeFeatured: FC<Props> = (props): JSX.Element => {
   // control display Swiper
   const matches900 = useMediaQuery("(max-width:900px)");
-  // control font-size
-  const matches500 = useMediaQuery("(max-width:500px)");
+
   return (
     <Paper
       sx={{
@@ -46,35 +45,17 @@ const HomeFeatured: FC<Props> = (props): JSX.Element => {
               color: "white",
             }}
           >
-            <Typography
-              component="h1"
-              variant="h3"
-              color="inherit"
-              gutterBottom
-              fontSize={matches500 ? "3rem" : undefined}
-            >
+            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
               บริษัท เอ็ม เค เจ พรีซิสชั่น จำกัด
             </Typography>
-            <Typography
-              variant="h5"
-              color="inherit"
-              paragraph
-              lineHeight="1.6"
-              fontSize={matches500 ? "inherit" : undefined}
-            >
+            <Typography variant="h5" color="inherit" paragraph lineHeight="1.6">
               เป็นตัวแทนจำหน่ายสินค้าอุตสาหกรรมทุกประเภทเพื่อรองรับความต้องการ ของลูกค้า
               เราพร้อมที่จะให้คำปรึกษา และนำเสนอสินค้าที่ลูกค้าต้องการโดย
               มุ่งเน้นการนำเสนอสินค้าที่มีคุณภาพจากผู้ผลิตบริษัทชั้นนำต่างๆทั้งใน ประเทศ
               และต่างประเทศ
             </Typography>
             <Link href="/">
-              <Button
-                variant="contained"
-                color="info"
-                sx={{
-                  fontSize: matches500 ? "1rem" : undefined,
-                }}
-              >
+              <Button variant="contained" color="info">
                 ดูสินค้าของเรา
               </Button>
             </Link>
