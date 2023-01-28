@@ -7,14 +7,13 @@ import ProductsCard from "@/components/browse/productsCard";
 import RatingFilter from "@/components/browse/RatingFilter";
 import HomeFooter from "@/components/home/homeFooter";
 import Header from "@/components/home/homeHeader";
-import { Container, useMediaQuery, Box, Grid, Button } from "@mui/material";
+import { Container, Box, Grid, Button } from "@mui/material";
 
 import { NextPage } from "next";
 
 interface Props {}
 
 const browse: NextPage<Props> = () => {
-  const matches320 = useMediaQuery("(max-width:320px)");
   return (
     <>
       <Header />
