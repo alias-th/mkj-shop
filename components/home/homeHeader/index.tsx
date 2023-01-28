@@ -19,8 +19,9 @@ import SearchBar from "./SearchBar";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Link from "next/link";
+import { pages } from "../../../data/header";
 
-const pages = ["หน้าแรก", "ร้านค้า", "เกี่ยวกับเรา", "ติดต่อเรา"];
 const settings = ["โปรไฟล์", "คำสั่งซื้อ", "สิ่งที่อยากได้", "ออกจากระบบ"];
 
 interface Props {}
@@ -61,7 +62,11 @@ const Header: FC<Props> = (props): JSX.Element => {
         >
           {/* LOGO -> Display When : Media query up md */}
           {/* แสดงตอน upMd */}
-          {upMd && <Image src="/logo.png" alt="logo" width={100} height={70} priority />}
+          {upMd && (
+            <Link href="/">
+              <Image src="/logo.png" alt="logo" width={100} height={70} priority />
+            </Link>
+          )}
 
           {/* HAMBURGER */}
           {/* แสดงตอน xs */}
@@ -76,6 +81,7 @@ const Header: FC<Props> = (props): JSX.Element => {
             >
               <MenuIcon color="primary" />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -95,11 +101,16 @@ const Header: FC<Props> = (props): JSX.Element => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu} color="primary">
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {pages.map((page, i) => {
+                // console.log(page);
+                return (
+                  <MenuItem key={i} onClick={handleCloseNavMenu} color="primary">
+                    <Link href={page.href}>
+                      <Typography textAlign="center">{page.title}</Typography>
+                    </Link>
+                  </MenuItem>
+                );
+              })}
             </Menu>
           </Box>
 
@@ -107,26 +118,29 @@ const Header: FC<Props> = (props): JSX.Element => {
           {/* โลโก้ตรงกลาง */}
           {downMd && !downSm && (
             <Box sx={{ flex: 1, justifyContent: "center", alignItems: "center", display: "flex" }}>
-              <Image src="/logo.png" alt="logo" width={100} height={70} />
+              <Link href="/">
+                <Image src="/logo.png" alt="logo" width={100} height={70} />
+              </Link>
             </Box>
           )}
 
           {/* MENU BUTTON */}
           {/* เมนูแต่ละ page */}
           <Box sx={{ flex: 0.5, gap: "10px", display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "black",
-                  display: "block",
-                  fontSize: "1.6rem",
-                }}
-              >
-                {page}
-              </Button>
+            {pages.map((page, i) => (
+              <Link href={page.href} key={i}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: "black",
+                    display: "block",
+                    fontSize: "1.6rem",
+                  }}
+                >
+                  {page.title}
+                </Button>
+              </Link>
             ))}
           </Box>
 
@@ -186,8 +200,8 @@ const Header: FC<Props> = (props): JSX.Element => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{ color: "primary" }}>
+              {settings.map((setting, i) => (
+                <MenuItem key={i} onClick={handleCloseUserMenu} sx={{ color: "primary" }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

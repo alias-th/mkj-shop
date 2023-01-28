@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { homeProduct } from "../../data/home";
+import { homeProduct } from "../../../data/home";
 
 interface Props {}
 

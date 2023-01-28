@@ -1,14 +1,14 @@
-import HomeCategories from "@/components/homeCategories";
-import HomeFeatured from "@/components/homeFeatured";
-import HomeFooter from "@/components/homeFooter";
-import Header from "@/components/homeHeader";
-import HomePerformance from "@/components/homePerformance";
+import HomeCategories from "@/components/home/homeCategories";
+import HomeFeatured from "@/components/home/homeFeatured";
+import HomeFooter from "@/components/home/homeFooter";
+import Header from "@/components/home/homeHeader";
+import HomePerformance from "@/components/home/homePerformance";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
-import HomeProduct from "@/components/homeProduct";
-import ProductSwiper from "@/components/homeProduct/ProductCard";
-import HomeTestimonial from "@/components/homeTestimonial";
+import HomeProduct from "@/components/home/homeProduct";
+import ProductSwiper from "@/components/home/homeProduct/ProductCard";
+import HomeTestimonial from "@/components/home/homeTestimonial";
 
 interface Props {}
 
