@@ -10,7 +10,7 @@ const HomePerformance: FC<Props> = (props): JSX.Element => {
     <Grid
       container
       sx={{
-        marginTop: "50px",
+        marginTop: "100px",
         alignContent: "start",
         padding: { xs: "20px", md: "0px" },
         gap: "20px",

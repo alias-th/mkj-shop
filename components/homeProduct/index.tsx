@@ -10,7 +10,7 @@ const HomeProduct: FC<Props> = (props): JSX.Element => {
     <Paper elevation={0} sx={{ backgroundColor: "#ffffff", height: "100%" }}>
       <Grid
         container
-        marginTop="50px"
+        marginTop="100px"
         marginLeft={0}
         padding={{ xs: "20px", md: "0px" }}
         sx={{ gap: { xs: "0px", md: "20px" } }}

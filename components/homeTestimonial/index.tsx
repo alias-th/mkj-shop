@@ -1,10 +1,9 @@
 import { FC } from "react";
 import { Grid, Typography, Box, Paper } from "@mui/material";
-import CategoryCard from "./CategoryCard";
-
+import TestimonialCard from "./TestimonialCard";
 interface Props {}
 
-const HomeCategories: FC<Props> = (props): JSX.Element => {
+const HomeTestimonial: FC<Props> = (props): JSX.Element => {
   return (
     <Paper elevation={0} sx={{ backgroundColor: "#ffffff" }}>
       <Grid
@@ -19,29 +18,24 @@ const HomeCategories: FC<Props> = (props): JSX.Element => {
           xs={12}
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             padding: "0px !important",
           }}
         >
           <Box>
             <Typography variant="h4" color="inherit" gutterBottom>
-              หมวดหมู่
-            </Typography>
-          </Box>
-          <Box>
-            <Typography variant="h6" color="inherit" gutterBottom>
-              ดูทั้งหมด
+              รีวิวจากลูกค้า
             </Typography>
           </Box>
         </Grid>
 
         <Box sx={{ maxWidth: "100%", height: "100%" }}>
-          <CategoryCard />
+          <TestimonialCard />
         </Box>
       </Grid>
     </Paper>
   );
 };
 
-export default HomeCategories;
+export default HomeTestimonial;

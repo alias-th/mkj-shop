@@ -1,0 +1,10 @@
+.cardSwiper img {
+  height: 200px;
+  max-width: 300px;
+}
+
+.cardSwiper {
+  min-width: 200px;
+  background-color: #b9fffb;
+  padding: 20px !important;
+}

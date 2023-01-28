@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import { NextPage } from "next";
 import HomeProduct from "@/components/homeProduct";
 import ProductSwiper from "@/components/homeProduct/ProductCard";
+import HomeTestimonial from "@/components/homeTestimonial";
 
 interface Props {}
 
@@ -30,6 +31,7 @@ const Home: NextPage<Props> = () => {
         <HomeCategories />
         <HomePerformance />
         <HomeProduct />
+        <HomeTestimonial />
       </Container>
       <HomeFooter />
     </>

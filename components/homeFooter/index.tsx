@@ -8,7 +8,7 @@ const HomeFooter: FC<Props> = (props): JSX.Element => {
   return (
     <Box
       sx={{
-        marginTop: "50px",
+        marginTop: "100px",
         padding: "20px  0px  0px 0px",
         width: "100%",
         minWidth: "250px",

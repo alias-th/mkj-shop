@@ -12,3 +12,12 @@ export const homeProduct = [
   { image: "/images/home-product-5.jpg", title: "เครื่องเขียน" },
   { image: "/images/home-product-6.jpg", title: "อุปกรณโรงเรียนอนุบาล" },
 ];
+
+export const homeUser = [
+  { image: "/images/user-1.jpg" },
+  { image: "/images/user-2.jpg" },
+  { image: "/images/user-3.jpg" },
+  { image: "/images/user-4.jpg" },
+  { image: "/images/user-5.jpg" },
+  { image: "/images/user-6.jpg" },
+];
