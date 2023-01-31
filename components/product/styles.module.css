@@ -1,0 +1,47 @@
+.image div img {
+  object-fit: contain;
+  width: 450px !important;
+  height: 450px !important;
+}
+
+.image {
+  z-index: 99;
+  max-height: 450px;
+}
+
+.imageList {
+  object-fit: contain;
+  width: 100px !important;
+  height: 100px !important;
+  position: relative !important;
+}
+
+.imageOther {
+  object-fit: cover;
+  width: 250px !important;
+  position: relative !important;
+  height: unset !important;
+}
+
+@media (max-width: 600px) {
+  .image div img {
+    object-fit: contain;
+    width: 250px !important;
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 490px) {
+  .imageList {
+    object-fit: contain;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .imageOther {
+    object-fit: cover;
+    width: 100px !important;
+    position: relative !important;
+    height: unset !important;
+  }
+}
