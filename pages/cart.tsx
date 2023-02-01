@@ -1,31 +1,33 @@
+import Cart from "@/components/cart";
 import HomeFooter from "@/components/home/homeFooter";
 import Header from "@/components/home/homeHeader";
-import Product from "@/components/product";
-
-import { Container, Box, Grid, Button } from "@mui/material";
+import { Box, Container } from "@mui/material/";
 import { NextPage } from "next";
 
 interface Props {}
 
-const ProductPage: NextPage<Props> = () => {
+const cart: NextPage<Props> = () => {
   return (
     <>
       <Header />
+
       <Container
         maxWidth={"xl"}
         sx={{
           minWidth: "250px",
+          width: "100%",
           height: "100%",
-          // backgroundColor: "#f8f8f8",
+          backgroundColor: "white",
           padding: "20px",
           marginTop: "20px",
         }}
       >
-        <Product />
+        <Cart />
       </Container>
+
       <HomeFooter />
     </>
   );
 };
 
-export default ProductPage;
+export default cart;

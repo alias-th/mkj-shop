@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { display } from "@mui/system";
@@ -14,7 +14,7 @@ interface Props {}
 const Product: FC<Props> = (props): JSX.Element => {
   return (
     <>
-      <Box display={"flex"} marginTop="50px" marginBottom="50px">
+      <Box display={"flex"} marginBottom="50px">
         <ActiveLastBreadcrumb />
       </Box>
       <Grid container spacing={10}>

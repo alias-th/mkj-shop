@@ -2,6 +2,11 @@ html {
   font-size: 62.5%; /* 62.5% of 16px = 10px */
 }
 
+body {
+  /* background-color: white; */
+  background-color: #f8f8f880;
+}
+
 a {
   text-decoration: none;
 }

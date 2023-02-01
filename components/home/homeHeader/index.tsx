@@ -54,7 +54,7 @@ const Header: FC<Props> = (props): JSX.Element => {
   // แบ่ง component ได้อีก
 
   return (
-    <AppBar position="static" color="secondary" sx={{ height: "72px", minWidth: "250px" }}>
+    <AppBar position="relative" color="secondary" sx={{ minWidth: "250px" }}>
       <Container maxWidth="xl" sx={{ height: "100%" }}>
         <Toolbar
           disableGutters
@@ -159,13 +159,15 @@ const Header: FC<Props> = (props): JSX.Element => {
           >
             {/* CART AND FAV*/}
             {!downSm && (
-              <Tooltip title="ตะกร้า">
-                <IconButton aria-label="cart">
-                  <Badge badgeContent={4} color="info">
-                    <ShoppingCartIcon color="primary" sx={{ width: "30px", height: "30px" }} />
-                  </Badge>
-                </IconButton>
-              </Tooltip>
+              <Link href="/cart">
+                <Tooltip title="ตะกร้า">
+                  <IconButton aria-label="cart">
+                    <Badge badgeContent={4} color="info">
+                      <ShoppingCartIcon color="primary" sx={{ width: "30px", height: "30px" }} />
+                    </Badge>
+                  </IconButton>
+                </Tooltip>
+              </Link>
             )}
 
             {!downSm && (

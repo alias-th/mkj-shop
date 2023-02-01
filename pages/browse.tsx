@@ -22,9 +22,12 @@ const browse: NextPage<Props> = () => {
         sx={{
           minWidth: "250px",
           height: "100%",
+          backgroundColor: "white",
+          padding: "20px",
+          marginTop: "20px",
         }}
       >
-        <Box display={"flex"} marginTop="50px" marginBottom="50px">
+        <Box display={"flex"} marginBottom="50px">
           <ActiveLastBreadcrumb />
         </Box>
         <Grid container spacing={10}>

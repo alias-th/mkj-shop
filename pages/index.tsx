@@ -23,8 +23,10 @@ const Home: NextPage<Props> = () => {
         sx={{
           minWidth: "250px",
           height: "100%",
-          padding: `${matches320 && "0px"}`,
-          margin: `${matches320 && "0px"}`,
+          padding: `${matches320 ? "0px" : "20px"}`,
+          margin: `${matches320 ? "0px" : undefined}`,
+          marginTop: "20px",
+          backgroundColor: "white",
         }}
       >
         <HomeFeatured />
