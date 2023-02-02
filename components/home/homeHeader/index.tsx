@@ -21,8 +21,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import { pages } from "../../../data/header";
-
-const settings = ["โปรไฟล์", "คำสั่งซื้อ", "สิ่งที่อยากได้", "ออกจากระบบ"];
+import AccountInfo from "./AccountInfo";
 
 interface Props {}
 
@@ -33,16 +32,16 @@ const Header: FC<Props> = (props): JSX.Element => {
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const theme = useTheme();
@@ -163,7 +162,9 @@ const Header: FC<Props> = (props): JSX.Element => {
                 <Tooltip title="ตะกร้า">
                   <IconButton aria-label="cart">
                     <Badge badgeContent={4} color="info">
-                      <ShoppingCartIcon color="primary" sx={{ width: "30px", height: "30px" }} />
+                      <ShoppingCartIcon
+                        sx={{ width: "30px", height: "30px", color: "#9d9d9dab" }}
+                      />
                     </Badge>
                   </IconButton>
                 </Tooltip>
@@ -174,40 +175,35 @@ const Header: FC<Props> = (props): JSX.Element => {
               <Tooltip title="สิ่งที่อยากได้">
                 <IconButton aria-label="favorite">
                   <Badge badgeContent={4} color="info">
-                    <FavoriteIcon color="primary" sx={{ width: "30px", height: "30px" }} />
+                    <FavoriteIcon sx={{ width: "30px", height: "30px", color: "#9d9d9dab" }} />
                   </Badge>
                 </IconButton>
               </Tooltip>
             )}
 
             {/* ACCOUNT AND MENU */}
-            <Tooltip title="โปรไฟล์">
-              <IconButton onClick={handleOpenUserMenu}>
-                <Avatar alt="Remy Sharp" sx={{ width: "30px", height: "30px", bgcolor: "black" }} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, i) => (
-                <MenuItem key={i} onClick={handleCloseUserMenu} sx={{ color: "primary" }}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {false && (
+              <AccountInfo
+                handleOpenUserMenu={handleOpenUserMenu}
+                anchorElUser={anchorElUser}
+                handleCloseUserMenu={handleCloseUserMenu}
+              />
+            )}
+
+            {true && (
+              <>
+                <Link href="/login">
+                  <Box sx={{ display: "flex", gap: "10px" }}>
+                    <Button variant="contained" color={"info"}>
+                      Signup
+                    </Button>
+                    <Button variant="outlined" color={"info"}>
+                      Login
+                    </Button>
+                  </Box>
+                </Link>
+              </>
+            )}
           </Box>
         </Toolbar>
       </Container>
