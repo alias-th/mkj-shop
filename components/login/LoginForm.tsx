@@ -1,9 +1,12 @@
 import { FC } from "react";
 import { TextField, Box, Button, Typography } from "@mui/material";
+import { ClientSafeProvider, signIn } from "next-auth/react";
 
-interface Props {}
+interface Props {
+  providers: ClientSafeProvider[] | undefined;
+}
 
-const loginForm: FC<Props> = (props): JSX.Element => {
+const loginForm: FC<Props> = ({ providers }): JSX.Element => {
   return (
     <Box
       component="form"
@@ -27,15 +30,30 @@ const loginForm: FC<Props> = (props): JSX.Element => {
       <Typography component="p" variant="body2" color="inherit" gutterBottom alignContent="end">
         ลืมรหัสผ่าน ?
       </Typography>
-      <Button variant="outlined" fullWidth>
-        Google
-      </Button>
-      <Button variant="outlined" fullWidth>
-        Facebook
-      </Button>
-      <Button variant="outlined" fullWidth>
-        Github
-      </Button>
+
+      {/* Login Social Buttons */}
+      {providers?.map((provider, i) => {
+        if (provider.name === "Credentials") return;
+        return (
+          <Button
+            variant="outlined"
+            fullWidth
+            sx={{ display: "flex", gap: "10px" }}
+            key={i}
+            onClick={() => signIn(provider.id)}
+          >
+            <img
+              src={`/icons/${provider.name}.png`}
+              alt="google-icon"
+              width={"25px"}
+              height={"100%"}
+            ></img>
+            <Typography component="p" variant="body2" color="inherit" minWidth={"70px"}>
+              {provider.name}
+            </Typography>
+          </Button>
+        );
+      })}
     </Box>
   );
 };

@@ -1,5 +1,7 @@
 import { Avatar, IconButton, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
+import { DefaultSession } from "next-auth/core/types";
 import { FC, MouseEvent } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 interface Props {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
@@ -14,11 +16,17 @@ const AccountInfo: FC<Props> = ({
   handleOpenUserMenu,
   anchorElUser,
 }): JSX.Element => {
+  const { data: session } = useSession();
+
   return (
     <>
       <Tooltip title="โปรไฟล์">
         <IconButton onClick={handleOpenUserMenu}>
-          <Avatar alt="Remy Sharp" sx={{ width: "30px", height: "30px", bgcolor: "#9d9d9dab" }} />
+          <Avatar
+            alt="Remy Sharp"
+            sx={{ width: "30px", height: "30px", bgcolor: "#9d9d9dab" }}
+            src={session?.user?.image || ""}
+          />
         </IconButton>
       </Tooltip>
       <Menu
@@ -37,11 +45,19 @@ const AccountInfo: FC<Props> = ({
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting, i) => (
-          <MenuItem key={i} onClick={handleCloseUserMenu} sx={{ color: "primary" }}>
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
-        ))}
+        {settings.map((setting, i) => {
+          return (
+            <MenuItem key={i} onClick={handleCloseUserMenu} sx={{ color: "primary" }}>
+              {setting === "ออกจากระบบ" ? (
+                <Typography textAlign="center" onClick={() => signOut()}>
+                  {setting}
+                </Typography>
+              ) : (
+                <Typography textAlign="center">{setting}</Typography>
+              )}
+            </MenuItem>
+          );
+        })}
       </Menu>
     </>
   );

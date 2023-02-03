@@ -5,9 +5,12 @@ import { FC } from "react";
 import LoginAndSignUp from "../components/login";
 import { Grid, IconButton } from "@mui/material";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-interface Props {}
+import { GetServerSideProps, InferGetServerSidePropsType, Redirect } from "next";
+import { getSession, getProviders, ClientSafeProvider } from "next-auth/react";
 
-const Login: FC<Props> = (props): JSX.Element => {
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+const Login: FC<Props> = ({ providers }): JSX.Element => {
   return (
     <>
       <Header />
@@ -31,9 +34,15 @@ const Login: FC<Props> = (props): JSX.Element => {
           <Grid
             item
             xs={12}
-            sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "100px" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: { xs: "50px", md: "100px" },
+              flexDirection: { xs: "column", md: "row" },
+            }}
           >
-            <LoginAndSignUp />
+            <LoginAndSignUp providers={providers} />
           </Grid>
         </Grid>
       </Container>
@@ -41,5 +50,42 @@ const Login: FC<Props> = (props): JSX.Element => {
     </>
   );
 };
+interface ServerSideResponse {
+  providers?: ClientSafeProvider[];
+  redirect?: Redirect;
+}
 
+export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async (context) => {
+  const { req } = context;
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+
+  const myProvider = await getProviders();
+  // todo: redirect to error page
+  if (!myProvider) {
+    console.log("myProvider is not found!");
+    return {
+      props: {},
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+
+  const providers = Object.values(myProvider);
+
+  return {
+    props: {
+      providers,
+    },
+  };
+};
 export default Login;
