@@ -7,7 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
 import HomeProduct from "@/components/home/homeProduct";
-import ProductSwiper from "@/components/home/homeProduct/ProductCard";
+
 import HomeTestimonial from "@/components/home/homeTestimonial";
 
 interface Props {}
@@ -18,6 +18,7 @@ const Home: NextPage<Props> = () => {
   return (
     <>
       <Header />
+
       <Container
         maxWidth={"xl"}
         sx={{

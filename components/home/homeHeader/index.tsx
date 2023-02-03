@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -26,9 +25,8 @@ import { useSession } from "next-auth/react";
 
 interface Props {}
 
-const Header: FC<Props> = (props): JSX.Element => {
+const Header: FC<Props> = (): JSX.Element => {
   const { data: session } = useSession();
-
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -51,9 +49,6 @@ const Header: FC<Props> = (props): JSX.Element => {
   const downMd = useMediaQuery(theme.breakpoints.down("md"));
   const downSm = useMediaQuery(theme.breakpoints.down("sm"));
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
-
-  // สามารถปรับปรุงได้
-  // แบ่ง component ได้อีก
 
   return (
     <AppBar position="relative" color="secondary" sx={{ minWidth: "250px" }}>
@@ -185,6 +180,7 @@ const Header: FC<Props> = (props): JSX.Element => {
             )}
 
             {/* ACCOUNT AND MENU */}
+
             {session && (
               <AccountInfo
                 handleOpenUserMenu={handleOpenUserMenu}
@@ -194,18 +190,16 @@ const Header: FC<Props> = (props): JSX.Element => {
             )}
 
             {!session && (
-              <>
-                <Link href="/login">
-                  <Box sx={{ display: "flex", gap: "10px" }}>
-                    <Button variant="contained" color={"info"}>
-                      Signup
-                    </Button>
-                    <Button variant="outlined" color={"info"}>
-                      Login
-                    </Button>
-                  </Box>
-                </Link>
-              </>
+              <Link href="/login">
+                <Box sx={{ display: "flex", gap: "10px" }}>
+                  <Button variant="contained" color={"info"}>
+                    Signup
+                  </Button>
+                  <Button variant="outlined" color={"info"}>
+                    Login
+                  </Button>
+                </Box>
+              </Link>
             )}
           </Box>
         </Toolbar>
