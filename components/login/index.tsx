@@ -1,5 +1,5 @@
 import { FC } from "react";
-import LoginForm from "./loginForm";
+import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import styles from "./styles.module.css";
 interface Props {}

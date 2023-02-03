@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import { Box } from "@mui/material";
 import AdminAppBar from "@/components/admin/AdminAppBar";
-import { useState } from "react";
+import { FC, useState } from "react";
 import AdminDrawer from "@/components/admin/AdminDrawer";
 import AdminMainContent from "@/components/admin/AdminMainContent";
 
 interface Props {}
 
-const index: NextPage<Props> = () => {
+const AdminPage: FC<Props> = (): JSX.Element => {
   const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
@@ -27,4 +27,4 @@ const index: NextPage<Props> = () => {
   );
 };
 
-export default index;
+export default AdminPage;
