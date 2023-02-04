@@ -21,12 +21,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import { pages } from "../../../data/header";
 import AccountInfo from "./AccountInfo";
-import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
-interface Props {}
+interface Props {
+  mySession: Session;
+}
 
-const Header: FC<Props> = (): JSX.Element => {
-  const { data: session } = useSession();
+const Header: FC<Props> = ({ mySession }): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -181,15 +182,16 @@ const Header: FC<Props> = (): JSX.Element => {
 
             {/* ACCOUNT AND MENU */}
 
-            {session && (
+            {mySession && (
               <AccountInfo
                 handleOpenUserMenu={handleOpenUserMenu}
                 anchorElUser={anchorElUser}
                 handleCloseUserMenu={handleCloseUserMenu}
+                mySession={mySession}
               />
             )}
 
-            {!session && (
+            {!mySession && (
               <Link href="/login">
                 <Box sx={{ display: "flex", gap: "10px" }}>
                   <Button variant="contained" color={"info"}>

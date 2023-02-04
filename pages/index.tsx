@@ -5,19 +5,22 @@ import Header from "@/components/home/homeHeader";
 import HomePerformance from "@/components/home/homePerformance";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
-import { NextPage } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import HomeProduct from "@/components/home/homeProduct";
 
 import HomeTestimonial from "@/components/home/homeTestimonial";
 
-interface Props {}
+import { authOptions } from "pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth/next";
 
-const Home: NextPage<Props> = () => {
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+const Home: NextPage<Props> = ({ mySession }) => {
   const matches320 = useMediaQuery("(max-width:320px)");
 
   return (
     <>
-      <Header />
+      <Header mySession={mySession} />
 
       <Container
         maxWidth={"xl"}
@@ -39,6 +42,16 @@ const Home: NextPage<Props> = () => {
       <HomeFooter />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  return {
+    props: {
+      mySession: session,
+    },
+  };
 };
 
 export default Home;

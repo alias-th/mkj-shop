@@ -1,12 +1,13 @@
 import { Avatar, IconButton, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
-import { DefaultSession } from "next-auth/core/types";
-import { FC, MouseEvent } from "react";
-import { useSession, signOut } from "next-auth/react";
+import { FC } from "react";
+import { signOut } from "next-auth/react";
+import { Session } from "next-auth";
 
 interface Props {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
   anchorElUser: HTMLElement | null;
   handleCloseUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
+  mySession: Session;
 }
 
 const settings = ["โปรไฟล์", "คำสั่งซื้อ", "สิ่งที่อยากได้", "ออกจากระบบ"];
@@ -15,9 +16,8 @@ const AccountInfo: FC<Props> = ({
   handleCloseUserMenu,
   handleOpenUserMenu,
   anchorElUser,
+  mySession,
 }): JSX.Element => {
-  const { data: session } = useSession();
-
   return (
     <>
       <Tooltip title="โปรไฟล์">
@@ -25,7 +25,7 @@ const AccountInfo: FC<Props> = ({
           <Avatar
             alt="Remy Sharp"
             sx={{ width: "30px", height: "30px", bgcolor: "#9d9d9dab" }}
-            src={session?.user?.image || ""}
+            src={mySession?.user?.image || ""}
           />
         </IconButton>
       </Tooltip>
