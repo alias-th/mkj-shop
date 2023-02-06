@@ -12,6 +12,7 @@ const loginForm: FC<Props> = ({ providers }): JSX.Element => {
       component="form"
       sx={{
         width: "300px",
+        maxWidth: "500px",
         display: "flex",
         // alignItems: "center",
         justifyContent: "center",

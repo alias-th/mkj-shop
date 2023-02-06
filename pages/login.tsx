@@ -18,14 +18,14 @@ const Login: FC<Props> = ({ providers }): JSX.Element => {
         maxWidth={"xl"}
         sx={{
           minWidth: "250px",
-          height: "100%",
+          height: "100vh",
           backgroundColor: "white",
           padding: "20px",
           marginTop: "20px",
         }}
       >
-        <Grid container>
-          <Grid item xs={12}>
+        <Grid container sx={{ height: "600px", alignContent: "flex-start" }}>
+          <Grid item xs={12} sx={{ height: "70px" }}>
             <IconButton aria-label="delete" size="large">
               <ArrowBackIosNewRoundedIcon />
             </IconButton>
@@ -36,7 +36,7 @@ const Login: FC<Props> = ({ providers }): JSX.Element => {
             xs={12}
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               justifyContent: "center",
               gap: { xs: "50px", md: "100px" },
               flexDirection: { xs: "column", md: "row" },
