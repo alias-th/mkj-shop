@@ -1,25 +1,25 @@
 import { FC, useState, ChangeEventHandler } from "react";
 import { TextField, Box, Button, Typography } from "@mui/material";
 import { useField, Form, FormikProps, Formik } from "formik";
-import SignupInput from "../../components/inputs/signupInput";
+import LoginAndSignupInput from "../inputs/loginAndSignupInput";
 import { signupValidation } from "@/utils/validator/login";
 import axios from "axios";
 
 interface Props {}
 
 interface Values {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  nameSignup: string;
+  emailSignup: string;
+  passwordSignup: string;
+  confirmPasswordSignup: string;
 }
 
 const SignUpForm: FC<Props> = (props): JSX.Element => {
   const [infoUser, setInfoUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    nameSignup: "",
+    emailSignup: "",
+    passwordSignup: "",
+    confirmPasswordSignup: "",
   });
 
   const onChangeHandler: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (e) => {
@@ -28,17 +28,25 @@ const SignUpForm: FC<Props> = (props): JSX.Element => {
   };
 
   const onSubmitHandler = async () => {
-    console.log(infoUser);
+    // console.log(infoUser);
 
     try {
-      await axios.post("/api/auth/signup", {
-        name: infoUser.name,
-        email: infoUser.email,
-        password: infoUser.password,
-        confirmPassword: infoUser.confirmPassword,
+      const result = await axios.post("/api/auth/signup", {
+        name: infoUser.nameSignup,
+        email: infoUser.emailSignup,
+        password: infoUser.passwordSignup,
+        confirmPassword: infoUser.confirmPasswordSignup,
+      });
+      console.log(result.data.message);
+
+      setInfoUser({
+        nameSignup: "",
+        emailSignup: "",
+        passwordSignup: "",
+        confirmPasswordSignup: "",
       });
     } catch (error: any) {
-      console.log(error.message);
+      console.log(error.response.data.message);
     }
   };
 
@@ -60,10 +68,10 @@ const SignUpForm: FC<Props> = (props): JSX.Element => {
       <Formik
         enableReinitialize
         initialValues={{
-          name: infoUser.name,
-          email: infoUser.email,
-          password: infoUser.password,
-          confirmPassword: infoUser.confirmPassword,
+          nameSignup: infoUser.nameSignup,
+          emailSignup: infoUser.emailSignup,
+          passwordSignup: infoUser.passwordSignup,
+          confirmPasswordSignup: infoUser.confirmPasswordSignup,
         }}
         validationSchema={signupValidation}
         onSubmit={() => onSubmitHandler()}
@@ -77,16 +85,26 @@ const SignUpForm: FC<Props> = (props): JSX.Element => {
               flexDirection: "column",
             }}
           >
-            <SignupInput name="name" type="text" label="ชื่อ-นามสกุล" onChange={onChangeHandler} />
-            <SignupInput name="email" type="text" label="อีเมล" onChange={onChangeHandler} />
-            <SignupInput
-              name="password"
+            <LoginAndSignupInput
+              name="nameSignup"
+              type="text"
+              label="ชื่อ-นามสกุล"
+              onChange={onChangeHandler}
+            />
+            <LoginAndSignupInput
+              name="emailSignup"
+              type="text"
+              label="อีเมล"
+              onChange={onChangeHandler}
+            />
+            <LoginAndSignupInput
+              name="passwordSignup"
               type="password"
               label="รหัสผ่าน"
               onChange={onChangeHandler}
             />
-            <SignupInput
-              name="confirmPassword"
+            <LoginAndSignupInput
+              name="confirmPasswordSignup"
               type="password"
               label="ยืนยันรหัสผ่าน"
               onChange={onChangeHandler}

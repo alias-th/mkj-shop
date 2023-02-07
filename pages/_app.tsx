@@ -4,6 +4,9 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import theme from "@/styles/theme";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
@@ -18,6 +21,18 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <SessionProvider session={session}>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
           <Component {...pageProps} />
         </SessionProvider>
       </ThemeProvider>

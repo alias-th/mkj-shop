@@ -1,15 +1,60 @@
-import { FC } from "react";
-import { TextField, Box, Button, Typography } from "@mui/material";
+import { ChangeEventHandler, FC, useState } from "react";
+import { TextField, Box, Button, Typography, Alert, IconButton } from "@mui/material";
 import { ClientSafeProvider, signIn } from "next-auth/react";
+import { Form, Formik, FormikProps } from "formik";
+import LoginAndSignupInput from "../inputs/loginAndSignupInput";
+import { loginValidation } from "@/utils/validator/login";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import CloseIcon from "@mui/icons-material/Close";
+import Collapse from "@mui/material/Collapse";
 
 interface Props {
   providers: ClientSafeProvider[] | undefined;
 }
 
+interface Values {
+  emailLogin: string;
+  passwordLogin: string;
+}
+
 const loginForm: FC<Props> = ({ providers }): JSX.Element => {
+  const [infoUser, setInfoUser] = useState({
+    emailLogin: "",
+    passwordLogin: "",
+  });
+  const [open, setOpen] = useState(true);
+
+  const router = useRouter();
+  const { error } = useRouter().query;
+
+  const onChangeHandler: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
+    setInfoUser({ ...infoUser, [name]: value });
+  };
+
+  const onSubmitHandler = async () => {
+    console.log(infoUser);
+
+    const options = {
+      redirect: false,
+      username: infoUser.emailLogin,
+      password: infoUser.passwordLogin,
+    };
+
+    const res = await signIn("credentials", options);
+
+    if (res?.error && !res.ok) {
+      return toast.error(res.error);
+    }
+
+    toast.success("Login successfully");
+    router.push("/");
+    return;
+  };
+
   return (
     <Box
-      component="form"
       sx={{
         width: "300px",
         maxWidth: "500px",
@@ -23,11 +68,63 @@ const loginForm: FC<Props> = ({ providers }): JSX.Element => {
       <Typography component="h4" variant="h4" color="inherit" gutterBottom alignContent="start">
         เข้าสู่ระบบ
       </Typography>
-      <TextField id="outlined-name" label="อีเมล" fullWidth />
-      <TextField id="outlined-name" label="รหัสผ่าน" fullWidth />
-      <Button variant="contained" color="info" fullWidth>
-        เข้าสู่ระบบ
-      </Button>
+      <Formik
+        enableReinitialize
+        initialValues={{
+          emailLogin: infoUser.emailLogin,
+          passwordLogin: infoUser.passwordLogin,
+        }}
+        validationSchema={loginValidation}
+        onSubmit={() => onSubmitHandler()}
+      >
+        {(props: FormikProps<Values>) => (
+          <Form
+            style={{
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <LoginAndSignupInput
+              name="emailLogin"
+              type="text"
+              label="อีเมล"
+              onChange={onChangeHandler}
+            />
+            <LoginAndSignupInput
+              name="passwordLogin"
+              type="password"
+              label="รหัสผ่าน"
+              onChange={onChangeHandler}
+            />
+            <Button variant="contained" color="info" fullWidth type="submit">
+              เข้าสู่ระบบ
+            </Button>
+          </Form>
+        )}
+      </Formik>
+      {error && (
+        <Collapse in={open}>
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+          >
+            อีเมลของคุณถูกใช้งานแล้ว, กรุณาเข้าสู่ระบบด้วยวิธีอื่น!
+          </Alert>
+        </Collapse>
+      )}
       <Typography component="p" variant="body2" color="inherit" gutterBottom alignContent="end">
         ลืมรหัสผ่าน ?
       </Typography>

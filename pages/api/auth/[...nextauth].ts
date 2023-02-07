@@ -1,4 +1,4 @@
-import NextAuth, { Session } from "next-auth";
+import NextAuth, { Awaitable, Session } from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import bcrypt from "bcrypt";
 
@@ -55,6 +55,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
+    error: "/login",
   },
   session: {
     strategy: "jwt",

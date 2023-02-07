@@ -13,7 +13,7 @@ const index: FC<Props> = ({ label, ...props }): JSX.Element => {
   const [field, meta] = useField(props);
   return (
     <>
-      <TextField id="outlined-name" label={label} {...field} {...props} fullWidth />
+      <TextField id={`outlined-${field.name}`} label={label} {...field} {...props} fullWidth />
       {meta.touched && meta.error && (
         <Alert variant="filled" severity="error">
           <ErrorMessage name={field.name} />

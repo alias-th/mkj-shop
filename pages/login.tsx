@@ -57,6 +57,7 @@ interface ServerSideResponse {
 
 export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async (context) => {
   const { req } = context;
+
   const session = await getSession({ req });
 
   if (session) {

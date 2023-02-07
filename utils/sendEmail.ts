@@ -15,7 +15,12 @@ const {
 
 const oauth2Client = new OAuth2(MAIL_OAUTH_CLIENT_ID, MAIL_OAUTH_CLIENT_SECRET, OAUTH_PLAYGROUND);
 
-export const sendEmail = async () => {
+export const sendEmail = async (
+  to: string,
+  subject: string,
+  url: string,
+  html: (to: any, url: any) => string
+) => {
   oauth2Client.setCredentials({
     refresh_token: MAIL_OAUTH_REFRESH_TOKEN,
   });
@@ -35,9 +40,9 @@ export const sendEmail = async () => {
 
   const mailOptions = {
     from: SENDER_EMAIL_ADDRESS,
-    to: "jamegame01@gmail.com",
-    subject: "active your email",
-    html: `<h1>hi</h1>`,
+    to: to,
+    subject: subject,
+    html: html(to, url),
   };
 
   smtpTransport.sendMail(mailOptions, (err, infos) => {

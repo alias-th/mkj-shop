@@ -18,6 +18,8 @@ type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 const Home: NextPage<Props> = ({ mySession }) => {
   const matches320 = useMediaQuery("(max-width:320px)");
 
+  // console.log(mySession, "pages/index");
+
   return (
     <>
       <Header mySession={mySession} />
