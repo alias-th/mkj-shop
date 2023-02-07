@@ -60,15 +60,15 @@ export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async 
 
   const session = await getSession({ req });
 
-  if (session?.user) {
-    console.log("redirect");
-    return {
-      props: {},
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
+  // if (session?.user) {
+  //   console.log("redirect");
+  //   return {
+  //     props: {},
+  //     redirect: {
+  //       destination: "/",
+  //     },
+  //   };
+  // }
 
   const myProvider = await getProviders();
   // todo: redirect to error page
