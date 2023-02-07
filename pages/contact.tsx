@@ -1,19 +1,18 @@
 import Header from "@/components/home/homeHeader";
-import { NextPage } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import { Container, Grid, Box } from "@mui/material";
 import HomeFooter from "@/components/home/homeFooter";
 import Contact from "@/components/contact";
 
 import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
 
-interface Props {}
-
-const contact: NextPage<Props> = () => {
-  const { data: session, status } = useSession();
-
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+const contact: NextPage<Props> = ({ mySession }) => {
   return (
     <>
-      <Header mySession={session} />
+      <Header mySession={mySession} />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -32,6 +31,16 @@ const contact: NextPage<Props> = () => {
       <HomeFooter />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  return {
+    props: {
+      mySession: session,
+    },
+  };
 };
 
 export default contact;

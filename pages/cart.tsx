@@ -2,16 +2,16 @@ import Cart from "@/components/cart";
 import HomeFooter from "@/components/home/homeFooter";
 import Header from "@/components/home/homeHeader";
 import { Box, Container } from "@mui/material/";
-import { NextPage } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
+import { authOptions } from "./api/auth/[...nextauth]";
 
-interface Props {}
-
-const cart: NextPage<Props> = () => {
-  const { data: session, status } = useSession();
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+const cart: NextPage<Props> = ({ mySession }) => {
   return (
     <>
-      <Header mySession={session} />
+      <Header mySession={mySession} />
 
       <Container
         maxWidth={"xl"}
@@ -30,6 +30,16 @@ const cart: NextPage<Props> = () => {
       <HomeFooter />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  return {
+    props: {
+      mySession: session,
+    },
+  };
 };
 
 export default cart;

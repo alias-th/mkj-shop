@@ -1,7 +1,6 @@
 import { FC } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
-import styles from "./styles.module.css";
 import { ClientSafeProvider } from "next-auth/react";
 import Box from "@mui/material/Box";
 

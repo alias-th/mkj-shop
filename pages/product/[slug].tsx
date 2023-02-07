@@ -3,14 +3,15 @@ import Header from "@/components/home/homeHeader";
 import Product from "@/components/product";
 
 import { Container, Box, Grid, Button } from "@mui/material";
-import { NextPage } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]";
 
-interface Props {}
-
-const ProductPage: NextPage<Props> = () => {
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+const ProductPage: NextPage<Props> = ({ mySession }) => {
   return (
     <>
-      <Header />
+      <Header mySession={mySession} />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -26,6 +27,16 @@ const ProductPage: NextPage<Props> = () => {
       <HomeFooter />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  return {
+    props: {
+      mySession: session,
+    },
+  };
 };
 
 export default ProductPage;

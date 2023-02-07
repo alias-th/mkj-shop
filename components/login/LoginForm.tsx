@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FC, useState } from "react";
-import { TextField, Box, Button, Typography, Alert, IconButton } from "@mui/material";
+import { Box, Button, Typography, Alert, IconButton } from "@mui/material";
 import { ClientSafeProvider, signIn } from "next-auth/react";
 import { Form, Formik, FormikProps } from "formik";
 import LoginAndSignupInput from "../inputs/loginAndSignupInput";
@@ -18,7 +18,7 @@ interface Values {
   passwordLogin: string;
 }
 
-const loginForm: FC<Props> = ({ providers }): JSX.Element => {
+const LoginForm: FC<Props> = ({ providers }): JSX.Element => {
   const [infoUser, setInfoUser] = useState({
     emailLogin: "",
     passwordLogin: "",
@@ -166,4 +166,4 @@ const loginForm: FC<Props> = ({ providers }): JSX.Element => {
   );
 };
 
-export default loginForm;
+export default LoginForm;

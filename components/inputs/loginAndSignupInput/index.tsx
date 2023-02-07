@@ -9,7 +9,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<any>) => void;
 }
 
-const index: FC<Props> = ({ label, ...props }): JSX.Element => {
+const LoginAndSignupInput: FC<Props> = ({ label, ...props }): JSX.Element => {
   const [field, meta] = useField(props);
   return (
     <>
@@ -23,4 +23,4 @@ const index: FC<Props> = ({ label, ...props }): JSX.Element => {
   );
 };
 
-export default index;
+export default LoginAndSignupInput;
