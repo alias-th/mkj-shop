@@ -24,7 +24,7 @@ import AccountInfo from "./AccountInfo";
 import { Session } from "next-auth";
 
 interface Props {
-  mySession?: Session;
+  mySession?: Session | null;
 }
 
 const Header: FC<Props> = ({ mySession }): JSX.Element => {

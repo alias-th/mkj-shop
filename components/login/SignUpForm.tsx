@@ -4,6 +4,7 @@ import { useField, Form, FormikProps, Formik } from "formik";
 import LoginAndSignupInput from "../inputs/loginAndSignupInput";
 import { signupValidation } from "@/utils/validator/login";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface Props {}
 
@@ -29,6 +30,7 @@ const SignUpForm: FC<Props> = (props): JSX.Element => {
 
   const onSubmitHandler = async () => {
     // console.log(infoUser);
+    const loadingSignup = toast.loading("กำลังดำเนินการ");
 
     try {
       const result = await axios.post("/api/auth/signup", {
@@ -37,7 +39,13 @@ const SignUpForm: FC<Props> = (props): JSX.Element => {
         password: infoUser.passwordSignup,
         confirmPassword: infoUser.confirmPasswordSignup,
       });
-      console.log(result.data.message);
+      // console.log(result.data.message);
+      toast.update(loadingSignup, {
+        render: result.data.message,
+        type: "success",
+        isLoading: false,
+        autoClose: 2500,
+      });
 
       setInfoUser({
         nameSignup: "",
@@ -46,7 +54,13 @@ const SignUpForm: FC<Props> = (props): JSX.Element => {
         confirmPasswordSignup: "",
       });
     } catch (error: any) {
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
+      toast.update(loadingSignup, {
+        render: error.response.data.message,
+        type: "error",
+        isLoading: false,
+        autoClose: 2500,
+      });
     }
   };
 

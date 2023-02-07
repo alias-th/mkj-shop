@@ -9,14 +9,16 @@ import HomeFooter from "@/components/home/homeFooter";
 import Header from "@/components/home/homeHeader";
 import { Container, Box, Grid, Button } from "@mui/material";
 
-import { NextPage } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
 
-interface Props {}
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const browse: NextPage<Props> = () => {
+const browse: NextPage<Props> = ({ mySession }) => {
   return (
     <>
-      <Header />
+      <Header mySession={mySession} />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -51,6 +53,16 @@ const browse: NextPage<Props> = () => {
       <HomeFooter />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  return {
+    props: {
+      mySession: session,
+    },
+  };
 };
 
 export default browse;

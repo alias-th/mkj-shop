@@ -34,7 +34,8 @@ const loginForm: FC<Props> = ({ providers }): JSX.Element => {
   };
 
   const onSubmitHandler = async () => {
-    console.log(infoUser);
+    // console.log(infoUser);
+    const loadingLogin = toast.loading("กำลังดำเนินการ...");
 
     const options = {
       redirect: false,
@@ -45,12 +46,21 @@ const loginForm: FC<Props> = ({ providers }): JSX.Element => {
     const res = await signIn("credentials", options);
 
     if (res?.error && !res.ok) {
-      return toast.error(res.error);
+      return toast.update(loadingLogin, {
+        render: res.error,
+        type: "error",
+        isLoading: false,
+        autoClose: 2500,
+      });
     }
 
-    toast.success("Login successfully");
-    router.push("/");
-    return;
+    toast.update(loadingLogin, {
+      render: "เข้าสู่ระบบสำเร็จ",
+      type: "success",
+      isLoading: false,
+      autoClose: 2500,
+    });
+    return router.push("/browse");
   };
 
   return (

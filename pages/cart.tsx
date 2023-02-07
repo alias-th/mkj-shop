@@ -3,13 +3,15 @@ import HomeFooter from "@/components/home/homeFooter";
 import Header from "@/components/home/homeHeader";
 import { Box, Container } from "@mui/material/";
 import { NextPage } from "next";
+import { useSession } from "next-auth/react";
 
 interface Props {}
 
 const cart: NextPage<Props> = () => {
+  const { data: session, status } = useSession();
   return (
     <>
-      <Header />
+      <Header mySession={session} />
 
       <Container
         maxWidth={"xl"}

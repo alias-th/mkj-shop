@@ -4,12 +4,16 @@ import { Container, Grid, Box } from "@mui/material";
 import HomeFooter from "@/components/home/homeFooter";
 import Contact from "@/components/contact";
 
+import { useSession } from "next-auth/react";
+
 interface Props {}
 
 const contact: NextPage<Props> = () => {
+  const { data: session, status } = useSession();
+
   return (
     <>
-      <Header />
+      <Header mySession={session} />
       <Container
         maxWidth={"xl"}
         sx={{
