@@ -151,7 +151,7 @@ const LoginForm: FC<Props> = ({ providers }): JSX.Element => {
             onClick={() => signIn(provider.id)}
           >
             <img
-              src={`/images/icons/${provider.name}.png`}
+              src={`/images/${provider.name}.png`}
               alt="google-icon"
               width={"25px"}
               height={"100%"}
