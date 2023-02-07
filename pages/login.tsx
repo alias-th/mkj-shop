@@ -65,7 +65,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async 
     return {
       props: {},
       redirect: {
-        destination: "/",
+        destination: "/redirect",
       },
     };
   }
