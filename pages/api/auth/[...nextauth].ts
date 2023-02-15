@@ -12,7 +12,6 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
 import db from "@/utils/db";
 
-db.connectDb();
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   adapter: MongoDBAdapter(clientPromise),
@@ -24,9 +23,13 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        db.connectDb();
+
         const email = credentials?.username;
         const password = credentials?.password;
         const user = await User.findOne({ email });
+
+        db.disconnectDb();
         if (user) {
           return signInUser(password, user) as any;
         } else {
@@ -46,10 +49,12 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
+      db.connectDb();
       let user = await User.findById(token.sub);
       session.user.id = token.sub || user?._id.toString();
       session.user.role = user?.role || "user";
       token.role = user?.role || "user";
+      db.disconnectDb();
       return session;
     },
   },

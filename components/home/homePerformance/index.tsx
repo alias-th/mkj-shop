@@ -24,7 +24,7 @@ const HomePerformance: FC<Props> = (props): JSX.Element => {
           </Typography>
         </Box>
       </Grid>
-      <Paper elevation={0} sx={{ backgroundColor: "#B9FFFC", padding: "20px" }}>
+      <Paper elevation={0} sx={{ backgroundColor: "#b9fffb4b", padding: "20px" }}>
         <Grid
           container
           wrap="nowrap"

@@ -23,7 +23,7 @@ import { homeUser } from "@/data/home";
 interface Props {}
 
 const TestimonialCard: FC<Props> = (props): JSX.Element => {
-  const matches500 = useMediaQuery("(max-width:500px)");
+  const matches900 = useMediaQuery("(max-width:900px)");
   return (
     <Swiper
       slidesPerView={2}
@@ -76,7 +76,7 @@ const TestimonialCard: FC<Props> = (props): JSX.Element => {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        sx={{ fontSize: `${matches500 && "1rem"}` }}
+                        sx={{ fontSize: `${matches900 && "1rem"}` }}
                       >
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore,
                         laboriosam.

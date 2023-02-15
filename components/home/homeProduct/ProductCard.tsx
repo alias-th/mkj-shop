@@ -13,7 +13,7 @@ const ProductCard: FC<Props> = (props): JSX.Element => {
   const card = homeProduct.map((item, i) => {
     return (
       <Grid item xs={5} sm={5} md={2.1} key={i}>
-        <Card sx={{ maxWidth: "400px", minWidth: "100px", maxHeight: "320px" }}>
+        <Card sx={{ width: "250px", height: "min-content", maxWidth: "100%", maxHeight: "100%" }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -39,7 +39,7 @@ const ProductCard: FC<Props> = (props): JSX.Element => {
               >
                 Lizards are a widespread group of squamate reptiles,
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="h6" color="text.secondary">
                 250
               </Typography>
             </CardContent>

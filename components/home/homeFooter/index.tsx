@@ -40,7 +40,7 @@ const HomeFooter: FC<Props> = (props): JSX.Element => {
             <Typography component="h6" variant="h5" color="inherit" gutterBottom>
               บริษัท เอ็ม เค เจ พรีซิสชั่น จำกัด
             </Typography>
-            <Typography variant="h6" color="inherit" fontWeight="300" lineHeight="1.6">
+            <Typography variant="body1" color="inherit" fontWeight="300" lineHeight="1.6">
               93/312 <br></br>หมู่ 3 ถนนพระรามที่ 2 ตำบลนาดี <br></br> อำเภอเมืองสมุทรสาคร
               จังหวัดสมุทรสาคร 74000
             </Typography>
@@ -49,7 +49,7 @@ const HomeFooter: FC<Props> = (props): JSX.Element => {
             <Typography component="h6" variant="h5" color="inherit" gutterBottom>
               ติดต่อ
             </Typography>
-            <Typography variant="h6" color="inherit" fontWeight="300" lineHeight="1.6">
+            <Typography variant="body1" color="inherit" fontWeight="300" lineHeight="1.6">
               Tel : 034 433525 <br></br>Line : MKJ <br></br>E-Mail : mkj@mkj.com
             </Typography>
           </Grid>

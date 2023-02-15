@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Yamada Safety Shoes",
+    "description": "Yamada Safety Shoes เหมาะสำหรับกลุ่มอุตสาหกรรมหนัก และพื้นที่ที่มีน้ำมัน สารเคมี ความร้อนปานกลาง ทนแรงกระแทกไม่น้อยกว่า 200 จูล",
+    "brand": "Mtech",
+    "slug": "yamada-safety-shoes",
+    "category": {
+      "$oid": "62cfeb1e119f0cd432b478d6"
+    },
+    "subCategories": [
+      {
+        "$oid": "62cfeb1e119f0cd432b477a9"
+      }
+    ],
+    "details": [
+      {
+        "name": "SubDescription",
+        "value": "เหมาะสำหรับกลุ่มอุตสาหกรรมหนัก และพื้นที่ที่มีน้ำมัน สารเคมี ความร้อนปานกลาง ทนแรงกระแทกไม่น้อยกว่า 200 จูล"
+      }
+    ],
+    "shipping": 0,
+    "subProducts": [
+      {
+        "sku": "sw2206138988536738",
+        "images": [
+          {
+            "url": "https://res.cloudinary.com/dyieotygt/image/upload/v1676342183/mkj/safety-shoes-yamada-1_fxy0d4.jpg",
+            "public_url": "products/znlfwkgbwb6plgscdzvu"
+          },
+          {
+            "url": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1665322066/products/xjqhhfqvy9nio4qjwwbq.webp",
+            "public_url": "products/xjqhhfqvy9nio4qjwwbq"
+          },
+          {
+            "url": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1665322071/products/jyi1njkdvaeukx03efsh.webp",
+            "public_url": "products/jyi1njkdvaeukx03efsh"
+          },
+          {
+            "url": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1665322076/products/eir1mjcccjubrltc68ge.webp",
+            "public_url": "products/eir1mjcccjubrltc68ge"
+          },
+          {
+            "url": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1665322081/products/hoefdn0w4omk8t1plwde.webp",
+            "public_url": "products/hoefdn0w4omk8t1plwde"
+          },
+          {
+            "url": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1665322086/products/ewizfpvpxpsyc26bet43.webp",
+            "public_url": "products/ewizfpvpxpsyc26bet43"
+          }
+        ],
+        "sizes": [],
+        "discount": 0
+      }
+    ],
+    "numReviews": 7,
+    "rating": 4,
+    "refundPolicy": "30 days",
+    "reviews": [
+      {
+        "reviewBy": {
+          "$oid": "62b33178fbcc6f0282db0606"
+        },
+        "rating": 1,
+        "review": "test",
+        "size": "100",
+        "images": [
+          {
+            "url": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1657145489/reviews/whcchkvkbd4dypptoccx.webp",
+            "public_url": "reviews/whcchkvkbd4dypptoccx"
+          }
+        ],
+
+        "createdAt": {
+          "$date": "2022-07-06T22:11:30.149Z"
+        },
+        "updatedAt": {
+          "$date": "2022-07-09T09:44:46.559Z"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2022-10-09T13:28:08.507Z"
+    },
+    "updatedAt": {
+      "$date": "2022-10-09T13:42:13.121Z"
+    }
+  }
+]

@@ -60,12 +60,12 @@ export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async 
 
   const session = await getSession({ req });
 
-  if (session?.user) {
-    console.log("redirect");
+  if (session) {
+    // console.log("redirect");
     return {
       props: {},
       redirect: {
-        destination: "/redirect",
+        destination: "/",
       },
     };
   }

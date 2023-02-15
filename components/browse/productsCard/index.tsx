@@ -8,10 +8,27 @@ import { homeProduct } from "@/data/home";
 import Box from "@mui/material/Box";
 import Link from "next/link";
 
-export default function ProductsCard() {
-  const card = homeProduct.map((item, i) => {
+interface Props {
+  products: Array<{
+    id: string;
+    name: string;
+    description: string;
+    brand: string;
+    slug: string;
+    category: string;
+    details: Array<{ name: string; value: string }>;
+    subProducts: Array<{ images: Array<{ url: string }> }>;
+    reviews: [];
+    rating: number;
+    refundPolicy: string;
+    shipping: number;
+  }>;
+}
+
+const ProductsCard: React.FC<Props> = ({ products }): JSX.Element => {
+  const card = products.map((item, i) => {
     return (
-      <Link href={`/product/${item.title}`} key={i}>
+      <Link href={`/product/${item.slug}?style=0`} key={i}>
         <Card sx={{ width: { xs: "min-content" } }} key={i}>
           <CardActionArea>
             <CardMedia
@@ -20,7 +37,7 @@ export default function ProductsCard() {
                 height: { xs: "150px", lg: "200px", xl: "250px" },
                 width: { xs: "150px", lg: "200px", xl: "250px" },
               }}
-              image={item.image}
+              image={item.subProducts[0].images[0].url}
               alt="green iguana"
             />
             <CardContent>
@@ -30,14 +47,14 @@ export default function ProductsCard() {
                 component="div"
                 sx={{ fontSize: { xs: "1.6rem" } }}
               >
-                {item.title}
+                {item.name}
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
                 sx={{ fontSize: { xs: "1.4rem" } }}
               >
-                Lizards are a widespread group of squamate reptiles,
+                {item.details[0].value.toString().substring(0, 50)}...
               </Typography>
               <Typography variant="h6" color="text.secondary">
                 250 บาท
@@ -62,4 +79,6 @@ export default function ProductsCard() {
       {card}
     </Box>
   );
-}
+};
+
+export default ProductsCard;

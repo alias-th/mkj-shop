@@ -47,7 +47,7 @@ const HomeProduct: FC<Props> = (props): JSX.Element => {
           width="100%"
           justifyContent={{ xs: "center", sm: "center", md: "space-between" }}
           gap={{ xs: "10px", sm: "20px", md: "25px" }}
-          bgcolor="#B9FFFC"
+          bgcolor="#b9fffb4b"
           padding={{ xs: "10px", md: "20px" }}
         >
           <ProductCard />

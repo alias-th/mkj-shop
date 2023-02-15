@@ -15,7 +15,7 @@ interface ProductModelSchema {
   shipping: number;
   subProducts: Array<{
     sku: string;
-    image: [];
+    images: [];
     description_images: [];
     color: { color: string; image: string };
     sizes: Array<{ size: string; qty: number; price: number }>;
@@ -28,13 +28,7 @@ interface ReviewModelSchema {
   rating: number;
   review: string;
   size: string;
-  style: {
-    color: string;
-    image: string;
-  };
-  fit: string;
   images: [];
-  likes: [];
 }
 
 const reviewSchema = new Schema<ReviewModelSchema>({
@@ -55,16 +49,7 @@ const reviewSchema = new Schema<ReviewModelSchema>({
   size: {
     type: String,
   },
-  style: {
-    type: Object,
-    color: String,
-    image: String,
-  },
-  fit: {
-    type: String,
-  },
   images: [],
-  likes: [],
 });
 
 const productSchema = new Schema<ProductModelSchema>(
@@ -128,6 +113,7 @@ const productSchema = new Schema<ProductModelSchema>(
         sku: String,
         images: [],
         description_images: [],
+        series: String,
         color: {
           color: {
             type: String,

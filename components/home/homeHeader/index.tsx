@@ -195,10 +195,10 @@ const Header: FC<Props> = ({ mySession }): JSX.Element => {
               <Link href="/login">
                 <Box sx={{ display: "flex", gap: "10px" }}>
                   <Button variant="contained" color={"info"}>
-                    Signup
+                    สมัครสมาชิก
                   </Button>
                   <Button variant="outlined" color={"info"}>
-                    Login
+                    เข้าสู่ระบบ
                   </Button>
                 </Box>
               </Link>

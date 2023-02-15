@@ -4,24 +4,42 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
+import { ResponseProduct } from "@/pages/product/[slug]";
+import ProductToggleBtnStyle from "./ProductToggleBtnStyle";
+import ProductToggleBtnSizes from "./ProductToggleBtnSizes";
 
-interface Props {}
+interface Props extends ResponseProduct {}
 
-const ProductDetails: FC<Props> = (props): JSX.Element => {
+const ProductDetails: FC<Props> = ({ product }): JSX.Element => {
+  const { description, name, price, subProducts, slug } = product;
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <Typography component="h4" variant="h4" color="inherit" gutterBottom alignContent="start">
-        บริษัท เอ็ม เค เจ พรีซิสชั่น จำกัด
+        {name}
       </Typography>
-      <Typography variant="h6" color="inherit" fontWeight="300" lineHeight="1.6">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus sed consequuntur
-        perspiciatis nulla fuga ipsum non dolore deserunt, ipsa itaque? Lorem ipsum dolor sit amet
-        consectetur, adipisicing elit. Quidem hic sint quas placeat illum eum, voluptate fuga odit!
-        Natus rerum sequi impedit ex amet magnam.
+      <Typography variant="body1" color="inherit" fontWeight="300" lineHeight="1.6">
+        {description}
       </Typography>
+      <Box sx={{ display: "flex", alignItems: "self-start", gap: "5px", flexDirection: "column" }}>
+        <Typography variant="body1" color="inherit" fontWeight="300" lineHeight="1.6">
+          ซีรีย์
+        </Typography>
+        <ProductToggleBtnStyle subProducts={subProducts} />
+      </Box>
+      <Box sx={{ display: "flex", alignItems: "self-start", gap: "5px", flexDirection: "column" }}>
+        <Typography variant="body1" color="inherit" fontWeight="300" lineHeight="1.6">
+          ขนาด
+        </Typography>
+        <ProductToggleBtnSizes subProducts={subProducts} slug={slug} />
+      </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
-        <Typography variant="h6" color="inherit" fontWeight="300" lineHeight="1.6">
-          สิ้นค้าเหลือจำนวน 10 ชิ้น
+        <Typography variant="body1" color="inherit" fontWeight="300" lineHeight="1.6">
+          สิ้นค้าเหลือจำนวน {price?.qty} ชิ้น
+        </Typography>
+      </Box>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+        <Typography variant="h5" color="inherit" fontWeight="300" lineHeight="1.6">
+          ราคา {price?.price} บาท
         </Typography>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>

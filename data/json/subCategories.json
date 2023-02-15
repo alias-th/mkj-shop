@@ -1,0 +1,19 @@
+[
+  {
+    "_id": {
+      "$oid": "62d69f9e60276c99sdfsdfs"
+    },
+    "name": "Hydraulic Oil ",
+    "slug": "hydraulic-oil",
+    "parent": {
+      "$oid": "62d69f9e60276c9915a995b8"
+    },
+    "createdAt": {
+      "$date": "2022-07-19T12:12:14.124Z"
+    },
+    "updatedAt": {
+      "$date": "2022-07-19T12:12:14.124Z"
+    },
+    "__v": 0
+  }
+]

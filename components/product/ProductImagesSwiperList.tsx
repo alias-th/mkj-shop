@@ -4,18 +4,15 @@ import Image from "next/image";
 import { products } from "@/data/product";
 import ReactImageMagnify from "react-image-magnify";
 import styles from "./styles.module.css";
+import { ResponseProduct } from "@/pages/product/[slug]";
 
-interface Props {}
+interface Props extends ResponseProduct {}
 
-const ProductImagesSwiperList: FC<Props> = (props): JSX.Element => {
-  const images = products.map((item) => {
-    return {
-      image: item.image,
-      title: item.title,
-    };
-  });
-
+const ProductImagesSwiperList: FC<Props> = ({ product }): JSX.Element => {
+  // console.log(product);
+  const { images, slug } = product;
   const [active, setActive] = useState(0);
+
   return (
     <Box
       sx={{
@@ -35,17 +32,21 @@ const ProductImagesSwiperList: FC<Props> = (props): JSX.Element => {
             {...{
               smallImage: {
                 alt: "",
-                src: images[active].image,
+                src: images[active].url,
                 isFluidWidth: true,
               },
               largeImage: {
-                src: images[active].image,
+                src: images[active].url,
                 width: 2000,
                 height: 2000,
               },
               enlargedImageContainerDimensions: {
                 width: "150%",
                 height: "100%",
+              },
+              imageStyle: {
+                objectFit: "contain",
+                maxHeight: "450px",
               },
             }}
           />
@@ -57,12 +58,11 @@ const ProductImagesSwiperList: FC<Props> = (props): JSX.Element => {
           display: "flex",
           flexDirection: { xs: "row", md: "column" },
           gap: "5px",
-
           width: "min-content",
           justifyContent: "center",
         }}
       >
-        {products.map((image, i) => {
+        {images?.map((image, i) => {
           return (
             <Box
               onMouseOver={() => setActive(i)}
@@ -75,8 +75,8 @@ const ProductImagesSwiperList: FC<Props> = (props): JSX.Element => {
             >
               <Image
                 className={styles.imageList}
-                src={image.image}
-                alt={image.title}
+                src={image.url}
+                alt={`${slug}-image-${i}`}
                 fill
                 sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,

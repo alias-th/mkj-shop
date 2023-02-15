@@ -50,7 +50,14 @@ export default function CategoryCard() {
         ? homeProduct.map((item, i) => {
             return (
               <SwiperSlide key={i}>
-                <Card sx={{ maxHeight: "350px" }}>
+                <Card
+                  sx={{
+                    width: "250px",
+                    height: "min-content",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                  }}
+                >
                   <CardActionArea>
                     <CardMedia
                       component="img"
