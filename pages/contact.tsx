@@ -12,7 +12,7 @@ type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 const contact: NextPage<Props> = ({ mySession }) => {
   return (
     <>
-      <Header mySession={mySession} />
+      <Header />
       <Container
         maxWidth={"xl"}
         sx={{

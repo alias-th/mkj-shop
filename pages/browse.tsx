@@ -11,19 +11,16 @@ import db from "@/utils/db";
 import { Container, Box, Grid, Button } from "@mui/material";
 
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
-import { getServerSession, Session } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
 
 import Product from "../models/Product";
-import Category from "@/models/Category";
-import SubCategory from "@/models/SubCategory";
+// import Category from "@/models/Category";
+// import SubCategory from "@/models/SubCategory";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
-
-const browse: NextPage<Props> = ({ mySession, products }) => {
+const browse: NextPage<Props> = ({ products }) => {
   return (
     <>
-      <Header mySession={mySession} />
+      <Header />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -60,7 +57,7 @@ const browse: NextPage<Props> = ({ mySession, products }) => {
   );
 };
 
-interface ServerSideResponseProduct {
+interface ServerSideResponse {
   products: Array<{
     id: string;
     name: string;
@@ -77,12 +74,7 @@ interface ServerSideResponseProduct {
   }>;
 }
 
-interface ServerSideResponse extends ServerSideResponseProduct {
-  mySession: Session | null;
-}
-
 export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
   db.connectDb();
 
   const products = await Product.find();
@@ -95,7 +87,6 @@ export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async 
 
   return {
     props: {
-      mySession: session,
       products: parsedProduct,
     },
   };

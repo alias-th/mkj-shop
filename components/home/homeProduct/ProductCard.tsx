@@ -13,7 +13,7 @@ const ProductCard: FC<Props> = (props): JSX.Element => {
   const card = homeProduct.map((item, i) => {
     return (
       <Grid item xs={5} sm={5} md={2.1} key={i}>
-        <Card sx={{ width: "250px", height: "min-content", maxWidth: "100%", maxHeight: "100%" }}>
+        <Card sx={{ width: "250px", height: "min-content", maxWidth: "100%" }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -26,9 +26,9 @@ const ProductCard: FC<Props> = (props): JSX.Element => {
             <CardContent sx={{ padding: { xs: "5px", sm: "8px", md: "10px", lg: "16px" } }}>
               <Typography
                 gutterBottom
-                variant="h6"
+                variant="subtitle2"
                 component="div"
-                sx={{ fontSize: { sx: "1rem", md: "1.6rem", lg: "2rem" } }}
+                sx={{ fontSize: { sx: "1rem", md: "1.2rem", lg: "1.6rem" }, whiteSpace: "nowrap" }}
               >
                 {item.title}
               </Typography>

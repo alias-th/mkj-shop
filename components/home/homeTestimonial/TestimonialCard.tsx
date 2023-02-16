@@ -53,7 +53,7 @@ const TestimonialCard: FC<Props> = (props): JSX.Element => {
         ? homeUser.map((item, i) => {
             return (
               <SwiperSlide key={i}>
-                <Card sx={{ height: { xs: "140px", md: "330px" }, display: "flex" }}>
+                <Card sx={{ height: { xs: "200px", md: "330px" }, display: "flex" }}>
                   <CardActionArea>
                     <CardContent
                       component="div"

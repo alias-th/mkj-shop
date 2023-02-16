@@ -7,12 +7,10 @@ import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 
-type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
-const cart: NextPage<Props> = ({ mySession }) => {
+const cart: NextPage = () => {
   return (
     <>
-      <Header mySession={mySession} />
-
+      <Header />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -30,16 +28,6 @@ const cart: NextPage<Props> = ({ mySession }) => {
       <HomeFooter />
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  return {
-    props: {
-      mySession: session,
-    },
-  };
 };
 
 export default cart;

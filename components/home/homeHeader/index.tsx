@@ -21,13 +21,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import { pages } from "../../../data/header";
 import AccountInfo from "./AccountInfo";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
-interface Props {
-  mySession?: Session | null;
-}
+interface Props {}
 
-const Header: FC<Props> = ({ mySession }): JSX.Element => {
+const Header: FC<Props> = (): JSX.Element => {
+  const { data: session } = useSession();
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -134,6 +134,7 @@ const Header: FC<Props> = ({ mySession }): JSX.Element => {
                     color: "black",
                     display: "block",
                     fontSize: "1.6rem",
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {page.title}
@@ -182,22 +183,23 @@ const Header: FC<Props> = ({ mySession }): JSX.Element => {
 
             {/* ACCOUNT AND MENU */}
 
-            {mySession && (
+            {session && (
               <AccountInfo
                 handleOpenUserMenu={handleOpenUserMenu}
                 anchorElUser={anchorElUser}
                 handleCloseUserMenu={handleCloseUserMenu}
-                mySession={mySession}
+                mySession={session}
               />
             )}
 
-            {!mySession && (
+            {/* TODO: reusable add class whiteSpace */}
+            {!session && (
               <Link href="/login">
-                <Box sx={{ display: "flex", gap: "10px" }}>
-                  <Button variant="contained" color={"info"}>
+                <Box sx={{ display: "flex", gap: "10px", width: "100%" }}>
+                  <Button variant="contained" color={"info"} sx={{ whiteSpace: "nowrap" }}>
                     สมัครสมาชิก
                   </Button>
-                  <Button variant="outlined" color={"info"}>
+                  <Button variant="outlined" color={"info"} sx={{ whiteSpace: "nowrap" }}>
                     เข้าสู่ระบบ
                   </Button>
                 </Box>

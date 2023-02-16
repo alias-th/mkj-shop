@@ -45,7 +45,7 @@ const HomeFooter: FC<Props> = (props): JSX.Element => {
               จังหวัดสมุทรสาคร 74000
             </Typography>
           </Grid>
-          <Grid item xs={12} md={2} display="flex" alignItems="center" flexDirection="column">
+          <Grid item xs={12} md={2} display="flex" alignItems="start" flexDirection="column">
             <Typography component="h6" variant="h5" color="inherit" gutterBottom>
               ติดต่อ
             </Typography>
