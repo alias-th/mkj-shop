@@ -10,11 +10,11 @@ import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
-const ProductPage: NextPage<Props> = ({ mySession, product }) => {
+const ProductPage: NextPage<Props> = ({ product }) => {
   // console.log(product.reviews);
   return (
     <>
-      <Header mySession={mySession} />
+      <Header />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -64,9 +64,7 @@ export interface ResponseProduct {
   };
 }
 
-interface ServerSideResponse extends ResponseProduct {
-  mySession: Session | null;
-}
+interface ServerSideResponse extends ResponseProduct {}
 
 export const getServerSideProps: GetServerSideProps<ServerSideResponse> = async (context) => {
   const { query } = context;
